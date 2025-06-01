@@ -1,39 +1,49 @@
+input Inputs {
+  name: String
+  price: Int
+  description: String
+  category: String
+  rating: Float
+  stock: Int
+}
+
 type Product {
-    id: ID!
-    name: String
-    price: Int
-    description: String
-    category: String
-    rating: Float
-    stock: Int
-  }
+  id: ID!
+  name: String
+  price: Int
+  description: String
+  category: String
+  rating: Float
+  stock: Int
+}
 
-  type Category {
-    id: ID!
-    name: String
-  }
-  
-  type Info {
-    name: String
-    age: Int
-    gender: Boolean
-  }  
+type Category {
+  id: ID!
+  name: String
+}
 
-  type User {
-    id: ID!
-    info: Info
-    password: String
-    products: [Product]
-  }
+type Info {
+  name: String
+  age: Int
+  gender: Boolean
+}
 
-  type Query {
-    product(id: ID!): Product
-    products: [Product]
-    categories: [Category]
-    users: [User]
-  }
+type User {
+  id: ID!
+  info: Info
+  password: String
+  products: [Product]
+}
 
-  type Mutation {
-    create(): Product
-    delete(id: ID!): [Product]
-  }
+type Query {
+  product(id: ID!): Product
+  products: [Product]
+  categories: [Category]
+  users: [User]
+}
+
+type Mutation {
+  create(data: Inputs): Product
+  delete(id: ID!): Product
+  update(id: ID!, data: Inputs): Product
+}
